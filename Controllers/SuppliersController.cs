@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StockControlSystem.SupplierRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,11 @@ namespace StockControlSystem.Controllers
 {
     public class SuppliersController : Controller
     {
-        public IActionResult Index()
+        private ISupplierRepository _supplierRepo;
+
+        public SuppliersController(ISupplierRepository supplierRepo)
         {
-            return View();
+            _supplierRepo = supplierRepo;
         }
     }
 }
