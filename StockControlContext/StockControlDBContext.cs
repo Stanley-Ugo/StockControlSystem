@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace StockControlSystem.StockControlContext
 {
-    public class StockControlContext : DbContext
+    public class StockControlDBContext : DbContext
     {
-        public StockControlContext(DbContextOptions<StockControlContext> options) : base(options)
+        public StockControlDBContext(DbContextOptions<StockControlDBContext> options) : base(options)
         {
 
         }
