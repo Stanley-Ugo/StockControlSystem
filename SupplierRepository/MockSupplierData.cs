@@ -46,7 +46,7 @@ namespace StockControlSystem.SupplierRepository
 
         public void DeleteSupplier(Supplier supplier)
         {
-            throw new NotImplementedException();
+            suppliers.Remove(supplier);
         }
 
         public Supplier EditSupplier(Supplier supplier)
