@@ -43,7 +43,7 @@ namespace StockControlSystem.Controllers
         [HttpPost]
         [Route("api/[controller]")]
         //https://localhost:44384/api/suppliers/supcode
-        public IActionResult GetSupplier([FromBody] Supplier supplier)
+        public IActionResult AddSupplier([FromBody] Supplier supplier)
         {
             _supplierRepo.AddSupplier(supplier);
 
