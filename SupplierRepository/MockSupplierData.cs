@@ -50,7 +50,7 @@ namespace StockControlSystem.SupplierRepository
 
         public Supplier GetSupplier(string supcode)
         {
-            throw new NotImplementedException();
+            return suppliers.SingleOrDefault(x => x.Supcode == supcode);
         }
 
         public List<Supplier> GetSuppliers()
