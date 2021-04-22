@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StockControlSystem.Models;
 using StockControlSystem.SupplierRepository;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,16 @@ namespace StockControlSystem.Controllers
             }
 
             return NotFound($"The Supplier With Supply Code: {supcode} Was Not Found");
+        }
+
+        [HttpPost]
+        [Route("api/[controller]")]
+        //https://localhost:44384/api/suppliers/supcode
+        public IActionResult GetSupplier([FromBody] Supplier supplier)
+        {
+            _supplierRepo.AddSupplier(supplier);
+
+            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + supplier.Supcode, supplier);
         }
     }
 }

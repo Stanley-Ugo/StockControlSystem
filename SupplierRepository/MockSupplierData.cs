@@ -35,7 +35,13 @@ namespace StockControlSystem.SupplierRepository
         };
         public Supplier AddSupplier(Supplier supplier)
         {
-            throw new NotImplementedException();
+            Random random = new Random();
+
+            supplier.Supcode = "supcode" + random.Next(0, 100).ToString();
+
+            suppliers.Add(supplier);
+
+            return supplier;
         }
 
         public void DeleteSupplier(Supplier supplier)
