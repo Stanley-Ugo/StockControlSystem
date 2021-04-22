@@ -10,6 +10,6 @@ namespace StockControlSystem.SupplierRepository
     {
         List<Supplier> GetSuppliers();
 
-
+        Supplier GetSupplier(string supcode);
     }
 }
