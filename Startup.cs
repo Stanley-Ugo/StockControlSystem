@@ -32,6 +32,8 @@ namespace StockControlSystem
 
             services.AddDbContextPool<StockControlDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("StockControlContextConnectionString")));
 
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddScoped<ISupplierRepository, SqlSupplierData>();
         }
 
