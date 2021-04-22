@@ -51,7 +51,16 @@ namespace StockControlSystem.SupplierRepository
 
         public Supplier EditSupplier(Supplier supplier)
         {
-            throw new NotImplementedException();
+            var supplierInDb = GetSupplier(supplier.Supcode);
+            supplierInDb.Name = supplier.Name;
+            supplierInDb.Address = supplier.Address;
+            supplierInDb.Email = supplier.Email;
+            supplierInDb.Contact = supplier.Contact;
+            supplierInDb.PhoneNo = supplier.PhoneNo;
+            supplierInDb.Sup_Last_Num = supplier.Sup_Last_Num;
+            supplierInDb.Sup_Start_Date = supplier.Sup_Start_Date;
+
+            return supplierInDb;
         }
 
         public Supplier GetSupplier(string supcode)
