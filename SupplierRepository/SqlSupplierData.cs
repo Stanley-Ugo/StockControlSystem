@@ -17,17 +17,32 @@ namespace StockControlSystem.SupplierRepository
         }
         public Supplier AddSupplier(Supplier supplier)
         {
-            throw new NotImplementedException();
+            _stockControlContext.St_Supplier.Add(supplier);
+
+            _stockControlContext.SaveChanges();
+
+            return supplier;
         }
 
         public void DeleteSupplier(Supplier supplier)
         {
-            throw new NotImplementedException();
+            _stockControlContext.St_Supplier.Remove(supplier);
+
+            _stockControlContext.SaveChanges();
         }
 
         public Supplier EditSupplier(Supplier supplier)
         {
-            throw new NotImplementedException();
+            var supplierInDb = _stockControlContext.St_Supplier.SingleOrDefault(x => x.Supcode == supplier.Supcode);
+
+            if (supplierInDb != null)
+            {
+                _stockControlContext.St_Supplier.Update(supplier);
+
+                _stockControlContext.SaveChanges();
+            }
+
+            return supplier;
         }
 
         public Supplier GetSupplier(string supcode)
