@@ -66,5 +66,24 @@ namespace StockControlSystem.Controllers
 
             return NotFound($"The Supplier With Supply Code: {supcode} Was Not Found");
         }
+
+        [HttpPatch]
+        [Route("api/[controller]/{supcode}")]
+        //https://localhost:44384/api/suppliers/supcode
+        public IActionResult EditSupplier(string supcode, [FromBody]Supplier supplier)
+        {
+            var supplierInDb = _supplierRepo.GetSupplier(supcode);
+
+            if (supplierInDb != null)
+            {
+                supplier.Supcode = supplierInDb.Supcode;
+
+                _supplierRepo.EditSupplier(supplier);
+
+                return Ok($"Supplier With Supply Code: {supcode} Has Been Edited Successfully!!!");
+            }
+
+            return NotFound($"The Supplier With Supply Code: {supcode} Was Not Found");
+        }
     }
 }
