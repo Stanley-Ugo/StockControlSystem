@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using StockControlSystem.Models;
+using StockControlSystem.StockControlResources;
 using StockControlSystem.SupplierRepository;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,13 @@ namespace StockControlSystem.Controllers
     public class SuppliersController : Controller
     {
         private ISupplierRepository _supplierRepo;
+        private IMapper _mapper;
 
-        public SuppliersController(ISupplierRepository supplierRepo)
+        public SuppliersController(ISupplierRepository supplierRepo, IMapper mapper)
         {
             _supplierRepo = supplierRepo;
+
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -22,7 +27,13 @@ namespace StockControlSystem.Controllers
         //https://localhost:44384/api/suppliers
         public IActionResult GetSuppliers()
         {
-            return Ok(_supplierRepo.GetSuppliers());
+            List<Supplier> suppliers = new List<Supplier>();
+
+            suppliers = _supplierRepo.GetSuppliers();
+
+            var suppliersDTO = _mapper.Map<SupplierDTO>(suppliers);
+
+            return Ok(suppliersDTO);
         }
 
         [HttpGet]
