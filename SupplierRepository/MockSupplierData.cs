@@ -8,6 +8,31 @@ namespace StockControlSystem.SupplierRepository
 {
     public class MockSupplierData : ISupplierRepository
     {
+        private List<Supplier> suppliers = new List<Supplier>()
+        {
+            new Supplier()
+            {
+                Supcode = "code1",
+                Name = "Supplier One",
+                Address = "2 Ahmadu Bello Way, Lagos",
+                Email = "supplier1@supcode1.com",
+                Contact = "09076835398",
+                PhoneNo = "08078866654",
+                Sup_Last_Num = 01,
+                Sup_Start_Date = DateTime.Now
+            },
+            new Supplier()
+            {
+                Supcode = "code2",
+                Name = "Supplier Two",
+                Address = "20 Ahmadu Bello Way, Lagos",
+                Email = "supplier2@supcode2.com",
+                Contact = "09076835398",
+                PhoneNo = "08078866654",
+                Sup_Last_Num = 02,
+                Sup_Start_Date = DateTime.Now
+            }
+        };
         public Supplier AddSupplier(Supplier supplier)
         {
             throw new NotImplementedException();
@@ -30,7 +55,7 @@ namespace StockControlSystem.SupplierRepository
 
         public List<Supplier> GetSuppliers()
         {
-            throw new NotImplementedException();
+            return suppliers;
         }
     }
 }

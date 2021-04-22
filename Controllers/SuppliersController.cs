@@ -15,5 +15,12 @@ namespace StockControlSystem.Controllers
         {
             _supplierRepo = supplierRepo;
         }
+
+        [HttpGet]
+        [Route("api/[controller]")]
+        public IActionResult GetSuppliers()
+        {
+            return Ok(_supplierRepo.GetSuppliers());
+        }
     }
 }
