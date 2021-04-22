@@ -37,7 +37,15 @@ namespace StockControlSystem.SupplierRepository
 
             if (supplierInDb != null)
             {
-                _stockControlContext.St_Supplier.Update(supplier);
+                supplierInDb.Name = supplier.Name;
+                supplierInDb.Address = supplier.Address;
+                supplierInDb.Email = supplier.Email;
+                supplierInDb.Contact = supplier.Contact;
+                supplierInDb.PhoneNo = supplier.PhoneNo;
+                supplierInDb.Sup_Last_Num = supplier.Sup_Last_Num;
+                supplierInDb.Sup_Start_Date = supplier.Sup_Start_Date;
+
+                _stockControlContext.St_Supplier.Update(supplierInDb);
 
                 _stockControlContext.SaveChanges();
             }
