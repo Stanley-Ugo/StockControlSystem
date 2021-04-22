@@ -12,7 +12,7 @@ namespace StockControlSystem.SupplierRepository
         {
             new Supplier()
             {
-                Supcode = "code1",
+                Supcode = "supcode1",
                 Name = "Supplier One",
                 Address = "2 Ahmadu Bello Way, Lagos",
                 Email = "supplier1@supcode1.com",
@@ -23,7 +23,7 @@ namespace StockControlSystem.SupplierRepository
             },
             new Supplier()
             {
-                Supcode = "code2",
+                Supcode = "supcode2",
                 Name = "Supplier Two",
                 Address = "20 Ahmadu Bello Way, Lagos",
                 Email = "supplier2@supcode2.com",

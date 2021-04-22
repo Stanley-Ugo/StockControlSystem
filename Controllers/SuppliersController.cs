@@ -49,5 +49,22 @@ namespace StockControlSystem.Controllers
 
             return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + supplier.Supcode, supplier);
         }
+
+        [HttpDelete]
+        [Route("api/[controller]/{supcode}")]
+        //https://localhost:44384/api/suppliers/supcode
+        public IActionResult DeleteSupplier(string supcode)
+        {
+            var supplier = _supplierRepo.GetSupplier(supcode);
+
+            if (supplier != null)
+            {
+                _supplierRepo.DeleteSupplier(supplier);
+
+                return Ok($"Supplier With Supply Code: {supcode} Has Been Deleted Successfully!!!");
+            }
+
+            return NotFound($"The Supplier With Supply Code: {supcode} Was Not Found");
+        }
     }
 }
