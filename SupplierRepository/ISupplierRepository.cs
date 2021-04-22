@@ -11,5 +11,11 @@ namespace StockControlSystem.SupplierRepository
         List<Supplier> GetSuppliers();
 
         Supplier GetSupplier(string supcode);
+
+        Supplier AddSupplier(Supplier supplier);
+
+        void DeleteSupplier(Supplier supplier);
+
+        Supplier EditSupplier(Supplier supplier);
     }
 }
