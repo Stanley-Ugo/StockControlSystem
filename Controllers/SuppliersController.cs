@@ -45,7 +45,9 @@ namespace StockControlSystem.Controllers
 
             if (supplier != null)
             {
-                return Ok(supplier);
+                var supplierDTO = _mapper.Map<SupplierDTO>(supplier);
+
+                return Ok(supplierDTO);
             }
 
             return NotFound($"The Supplier With Supply Code: {supcode} Was Not Found");
@@ -54,11 +56,13 @@ namespace StockControlSystem.Controllers
         [HttpPost]
         [Route("api/[controller]")]
         //https://localhost:44384/api/suppliers/supcode
-        public IActionResult AddSupplier([FromBody] Supplier supplier)
+        public IActionResult AddSupplier([FromBody] SupplierDTO supplierDTO)
         {
+            var supplier = _mapper.Map<Supplier>(supplierDTO);
+
             _supplierRepo.AddSupplier(supplier);
 
-            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + supplier.Supcode, supplier);
+            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + supplierDTO.Supcode, supplierDTO);
         }
 
         [HttpDelete]
@@ -81,13 +85,15 @@ namespace StockControlSystem.Controllers
         [HttpPatch]
         [Route("api/[controller]/{supcode}")]
         //https://localhost:44384/api/suppliers/supcode
-        public IActionResult EditSupplier(string supcode, [FromBody]Supplier supplier)
+        public IActionResult EditSupplier(string supcode, [FromBody]SupplierDTO supplierDTO)
         {
             var supplierInDb = _supplierRepo.GetSupplier(supcode);
 
             if (supplierInDb != null)
             {
-                supplier.Supcode = supplierInDb.Supcode;
+                supplierDTO.Supcode = supplierInDb.Supcode;
+
+                var supplier = _mapper.Map<Supplier>(supplierDTO);
 
                 _supplierRepo.EditSupplier(supplier);
 
