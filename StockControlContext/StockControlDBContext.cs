@@ -15,5 +15,7 @@ namespace StockControlSystem.StockControlContext
         }
 
         public DbSet<Supplier> St_Supplier { get; set; }
+
+        public DbSet<St_Stkjournal> St_Stkjournals { get; set; }
     }
 }
