@@ -13,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using StockControlSystem.AutoMappingProfile;
 
 namespace StockControlSystem
 {
@@ -33,6 +35,11 @@ namespace StockControlSystem
             services.AddDbContextPool<StockControlDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("StockControlContextConnectionString")));
 
             services.AddAutoMapper(typeof(Startup));
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
 
             services.AddScoped<ISupplierRepository, SqlSupplierData>();
         }

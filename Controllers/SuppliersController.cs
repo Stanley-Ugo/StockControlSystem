@@ -31,7 +31,7 @@ namespace StockControlSystem.Controllers
 
             suppliers = _supplierRepo.GetSuppliers();
 
-            var suppliersDTO = _mapper.Map<SupplierDTO>(suppliers);
+            var suppliersDTO = _mapper.Map<List<SupplierDTO>>(suppliers);
 
             return Ok(suppliersDTO);
         }
