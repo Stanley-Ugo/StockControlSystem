@@ -20,6 +20,8 @@ namespace StockControlSystem.StockControlContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             //Adding Unique Key Constraints to the below properties
             modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Coy).IsUnique();
             modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Branch).IsUnique();

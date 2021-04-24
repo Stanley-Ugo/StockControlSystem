@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 namespace StockControlSystem.Models
 {
 	[Table("St_Stkjournal")]
+	[Keyless]
     public class St_Stkjournal
     {
 		public string Stk_Coy { get; set; }
