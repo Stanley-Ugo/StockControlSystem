@@ -32,12 +32,14 @@ namespace StockControlSystem.SupplierRepository
 
         public St_Stkjournal GetStockJournal(string company)
         {
-            throw new NotImplementedException();
+            var stockJournal = _stockControlDBContext.St_Stkjournals.SingleOrDefault(x => x.Stk_Coy == company);
+
+            return stockJournal;
         }
 
         public List<St_Stkjournal> GetStockJournals()
         {
-            
+            return _stockControlDBContext.St_Stkjournals.ToList();
         }
     }
 }
