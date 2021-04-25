@@ -8,11 +8,11 @@ namespace StockControlSystem.SupplierRepository
 {
     public class MockSupplierData : IStockJournalRepository
     {
-        private List<St_Stkjournal> stockJournal = new List<St_Stkjournal>()
+        private List<St_Stkjournal> stockJournals = new List<St_Stkjournal>()
         {
             new St_Stkjournal()
             {
-                Stk_Coy = "Company1",
+                Stk_Coy = "company1",
                 Stk_Branch = "Branch 1",
                 Stk_Year = "2021",
                 Stk_Month = "April",
@@ -28,7 +28,7 @@ namespace StockControlSystem.SupplierRepository
 
             new St_Stkjournal()
             {
-                Stk_Coy = "Company2",
+                Stk_Coy = "company2",
                 Stk_Branch = "Branch 2",
                 Stk_Year = "2021",
                 Stk_Month = "April",
@@ -44,7 +44,9 @@ namespace StockControlSystem.SupplierRepository
         };
         public St_Stkjournal AddStockJournal(St_Stkjournal stkJournal)
         {
-            throw new NotImplementedException();
+            stockJournals.Add(stkJournal);
+
+            return stkJournal;
         }
 
         public void DeleteStockJournal(St_Stkjournal stkJournal)
@@ -59,12 +61,12 @@ namespace StockControlSystem.SupplierRepository
 
         public St_Stkjournal GetStockJournal(string company)
         {
-            throw new NotImplementedException();
+            return stockJournals.SingleOrDefault(x => x.Stk_Coy == company);
         }
 
         public List<St_Stkjournal> GetStockJournals()
         {
-            return stockJournal;
+            return stockJournals;
         }
     }
 }
