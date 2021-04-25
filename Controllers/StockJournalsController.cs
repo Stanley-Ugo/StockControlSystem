@@ -69,7 +69,7 @@ namespace StockControlSystem.Controllers
 
         [HttpPatch]
         [Route("api/[controller]/{company}")]
-        //https://localhost:44384/api/suppliers/supcode
+        //https://localhost:44384/api/stockjournals/company
         public IActionResult EditStockJournal(string company, [FromBody] St_Stkjournal stkJournal)
         {
             var companyInDb = _stockJournalRepository.GetStockJournal(company);
