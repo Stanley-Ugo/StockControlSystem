@@ -9,15 +9,20 @@ namespace StockControlSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StockJournalController : Controller
+    public class StockJournalsController : Controller
     {
         private IStockJournalRepository _stockJournalRepository;
 
-        public StockJournalController(IStockJournalRepository stockJournalRepository)
+        public StockJournalsController(IStockJournalRepository stockJournalRepository)
         {
             _stockJournalRepository = stockJournalRepository;
         }
 
-
+        [HttpGet]
+        [Route("api/[controller]")]
+        public IActionResult GetStockJournals()
+        {
+            return Ok(_stockJournalRepository.GetStockJournals());
+        }
     }
 }
