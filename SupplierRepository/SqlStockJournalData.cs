@@ -1,4 +1,5 @@
 ﻿using StockControlSystem.Models;
+using StockControlSystem.StockControlContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,12 @@ namespace StockControlSystem.SupplierRepository
 {
     public class SqlStockJournalData : IStockJournalRepository
     {
+        private StockControlDBContext _stockControlDBContext;
+
+        public SqlStockJournalData(StockControlDBContext stockControlDBContext)
+        {
+            _stockControlDBContext = stockControlDBContext;
+        }
         public St_Stkjournal AddStockJournal(St_Stkjournal stkJournal)
         {
             throw new NotImplementedException();
@@ -30,7 +37,7 @@ namespace StockControlSystem.SupplierRepository
 
         public List<St_Stkjournal> GetStockJournals()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
