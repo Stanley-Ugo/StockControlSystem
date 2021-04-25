@@ -17,7 +17,11 @@ namespace StockControlSystem.SupplierRepository
         }
         public St_Stkjournal AddStockJournal(St_Stkjournal stkJournal)
         {
-            throw new NotImplementedException();
+            _stockControlDBContext.St_Stkjournals.Add(stkJournal);
+
+            _stockControlDBContext.SaveChanges();
+
+            return stkJournal;
         }
 
         public void DeleteStockJournal(St_Stkjournal stkJournal)
