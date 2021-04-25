@@ -49,5 +49,41 @@ namespace StockControlSystem.Controllers
 
             return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + stkjournal.Stk_Coy, stkjournal);
         }
+
+        [HttpDelete]
+        [Route("api/[controller]/{company}")]
+        //https://localhost:44384/api/stockjournals/company
+        public IActionResult DeleteStockJournal(string company)
+        {
+            var stockCompany = _stockJournalRepository.GetStockJournal(company);
+
+            if (stockCompany != null)
+            {
+                _stockJournalRepository.DeleteStockJournal(stockCompany);
+
+                return Ok($"Stock Journal With Company Name: {company} Has Been Deleted Successfully!!!");
+            }
+
+            return NotFound($"The Stock Company With Company Name: {company} Was Not Found");
+        }
+
+        [HttpPatch]
+        [Route("api/[controller]/{company}")]
+        //https://localhost:44384/api/suppliers/supcode
+        public IActionResult EditStockJournal(string company, [FromBody] St_Stkjournal stkJournal)
+        {
+            var companyInDb = _stockJournalRepository.GetStockJournal(company);
+
+            if (companyInDb != null)
+            {
+                stkJournal.Stk_Coy = companyInDb.Stk_Coy;
+
+                _stockJournalRepository.EditStockJournal(stkJournal);
+
+                return Ok($"Stock Journal With Company Name: {company} Has Been Edited Successfully!!!");
+            }
+
+            return NotFound($"The Stock Company With Company Name: {company} Was Not Found");
+        }
     }
 }

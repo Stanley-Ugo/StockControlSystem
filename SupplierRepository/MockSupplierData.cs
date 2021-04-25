@@ -51,12 +51,26 @@ namespace StockControlSystem.SupplierRepository
 
         public void DeleteStockJournal(St_Stkjournal stkJournal)
         {
-            throw new NotImplementedException();
+            stockJournals.Remove(stkJournal);
         }
 
         public St_Stkjournal EditStockJournal(St_Stkjournal stkJournal)
         {
-            throw new NotImplementedException();
+            var stockJournalInDb = GetStockJournal(stkJournal.Stk_Coy);
+
+            stockJournalInDb.Stk_Branch = stkJournal.Stk_Branch;
+            stockJournalInDb.Stk_Year = stkJournal.Stk_Year;
+            stockJournalInDb.Stk_Month = stkJournal.Stk_Month;
+            stockJournalInDb.Stk_Loc = stkJournal.Stk_Loc;
+            stockJournalInDb.Stk_Type = stkJournal.Stk_Type;
+            stockJournalInDb.Stk_Account = stkJournal.Stk_Account;
+            stockJournalInDb.Stk_Debit = stkJournal.Stk_Debit;
+            stockJournalInDb.Stk_Credit = stkJournal.Stk_Credit;
+            stockJournalInDb.Stk_Rem = stkJournal.Stk_Rem;
+            stockJournalInDb.Stk_Update = stkJournal.Stk_Update;
+            stockJournalInDb.Stk_Period = stkJournal.Stk_Period;
+
+            return stockJournalInDb;
         }
 
         public St_Stkjournal GetStockJournal(string company)
