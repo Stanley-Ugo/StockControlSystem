@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StockControlSystem.SupplierRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,13 @@ namespace StockControlSystem.Controllers
     [ApiController]
     public class StockJournalController : Controller
     {
+        private IStockJournalRepository _stockJournalRepository;
+
+        public StockJournalController(IStockJournalRepository stockJournalRepository)
+        {
+            _stockJournalRepository = stockJournalRepository;
+        }
+
 
     }
 }
