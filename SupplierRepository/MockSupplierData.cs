@@ -64,7 +64,7 @@ namespace StockControlSystem.SupplierRepository
 
         public List<St_Stkjournal> GetStockJournals()
         {
-            throw new NotImplementedException();
+            return stockJournal;
         }
     }
 }

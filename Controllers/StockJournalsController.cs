@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace StockControlSystem.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class StockJournalsController : Controller
     {
         private IStockJournalRepository _stockJournalRepository;
