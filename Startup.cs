@@ -43,7 +43,7 @@ namespace StockControlSystem
 
             services.AddScoped<ISupplierRepository, SqlSupplierData>();
 
-            services.AddSingleton<IStockJournalRepository, MockSupplierData>();
+            services.AddScoped<IStockJournalRepository, SqlStockJournalData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
