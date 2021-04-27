@@ -31,6 +31,9 @@ namespace StockControlSystem.StockControlContext
             //modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Type).IsUnique();
             //modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Account).IsUnique();
 
+            //Adding Multiple primary keys in the class
+            modelBuilder.Entity<St_Stkjournal>().HasKey(st_stkjournal => new { st_stkjournal.Stk_Coy, st_stkjournal.Stk_Branch })
+
             //Makes the below property a "money" dataType in SQL Server
             modelBuilder.Entity<St_Stkjournal>().Property(s => s.Stk_Debit).HasColumnType("money");
             modelBuilder.Entity<St_Stkjournal>().Property(s => s.Stk_Credit).HasColumnType("money");
