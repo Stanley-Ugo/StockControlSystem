@@ -23,13 +23,13 @@ namespace StockControlSystem.StockControlContext
             base.OnModelCreating(modelBuilder);
 
             //Adding Unique Key Constraints to the below properties
-            modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Coy).IsUnique();
-            modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Branch).IsUnique();
-            modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Year).IsUnique();
-            modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Month).IsUnique();
-            modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Loc).IsUnique();
-            modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Type).IsUnique();
-            modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Account).IsUnique();
+            //modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Coy).IsUnique();
+            //modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Branch).IsUnique();
+            //modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Year).IsUnique();
+            //modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Month).IsUnique();
+            //modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Loc).IsUnique();
+            //modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Type).IsUnique();
+            //modelBuilder.Entity<St_Stkjournal>().HasIndex(uniqueKey => uniqueKey.Stk_Account).IsUnique();
 
             //Makes the below property a "money" dataType in SQL Server
             modelBuilder.Entity<St_Stkjournal>().Property(s => s.Stk_Debit).HasColumnType("money");
