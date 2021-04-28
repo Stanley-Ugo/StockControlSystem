@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using StockControlSystem.Models;
+using StockControlSystem.StockControlResources;
 using StockControlSystem.SupplierRepository;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,12 @@ namespace StockControlSystem.Controllers
     public class StockJournalsController : Controller
     {
         private IStockJournalRepository _stockJournalRepository;
+        private IMapper _mapper;
 
-        public StockJournalsController(IStockJournalRepository stockJournalRepository)
+        public StockJournalsController(IStockJournalRepository stockJournalRepository, IMapper mapper)
         {
             _stockJournalRepository = stockJournalRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -22,7 +26,13 @@ namespace StockControlSystem.Controllers
         //https://localhost:44384/api/stockjournals
         public IActionResult GetStockJournals()
         {
-            return Ok(_stockJournalRepository.GetStockJournals());
+            List<St_Stkjournal> companyJournal = new List<St_Stkjournal>();
+
+            companyJournal = _stockJournalRepository.GetStockJournals();
+
+            var companyJournalDTO = _mapper.Map<List<Stk_JournalDTO>>(companyJournal);
+
+            return Ok(companyJournalDTO);
         }
 
         [HttpGet]
@@ -34,7 +44,9 @@ namespace StockControlSystem.Controllers
 
             if (stockCompany != null)
             {
-                return Ok(stockCompany);
+                var stockCompanyDTO = _mapper.Map<Stk_JournalDTO>(stockCompany);
+
+                return Ok(stockCompanyDTO);
             }
 
             return NotFound($"The Stock Company With Company Name: {company} Was Not Found");
@@ -43,11 +55,13 @@ namespace StockControlSystem.Controllers
         [HttpPost]
         [Route("api/[controller]")]
         //https://localhost:44384/api/stockjournals
-        public IActionResult AddStockJournal([FromBody] St_Stkjournal stkjournal)
+        public IActionResult AddStockJournal([FromBody] Stk_JournalDTO stkjournalDTO)
         {
+            var stkjournal = _mapper.Map<St_Stkjournal>(stkjournalDTO);
+
             _stockJournalRepository.AddStockJournal(stkjournal);
 
-            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + stkjournal.Stk_Coy, stkjournal);
+            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + stkjournalDTO.Stk_Coy, stkjournalDTO);
         }
 
         [HttpDelete]
@@ -70,19 +84,21 @@ namespace StockControlSystem.Controllers
         [HttpPatch]
         [Route("api/[controller]/{company}")]
         //https://localhost:44384/api/stockjournals/company
-        public IActionResult EditStockJournal(string company, [FromBody] St_Stkjournal stkJournal)
+        public IActionResult EditStockJournal(string company, [FromBody] Stk_JournalDTO stkJournalDTO)
         {
             var companyInDb = _stockJournalRepository.GetStockJournal(company);
 
             if (companyInDb != null)
             {
-                stkJournal.Stk_Coy = companyInDb.Stk_Coy;
-                stkJournal.Stk_Branch = companyInDb.Stk_Branch;
-                stkJournal.Stk_Year = companyInDb.Stk_Year;
-                stkJournal.Stk_Month = companyInDb.Stk_Month;
-                stkJournal.Stk_Loc = companyInDb.Stk_Loc;
-                stkJournal.Stk_Type = companyInDb.Stk_Type;
-                stkJournal.Stk_Account = companyInDb.Stk_Account;
+                stkJournalDTO.Stk_Coy = companyInDb.Stk_Coy;
+                stkJournalDTO.Stk_Branch = companyInDb.Stk_Branch;
+                stkJournalDTO.Stk_Year = companyInDb.Stk_Year;
+                stkJournalDTO.Stk_Month = companyInDb.Stk_Month;
+                stkJournalDTO.Stk_Loc = companyInDb.Stk_Loc;
+                stkJournalDTO.Stk_Type = companyInDb.Stk_Type;
+                stkJournalDTO.Stk_Account = companyInDb.Stk_Account;
+
+                var stkJournal = _mapper.Map<St_Stkjournal>(stkJournalDTO);
 
                 _stockJournalRepository.EditStockJournal(stkJournal);
 

@@ -14,6 +14,7 @@ namespace StockControlSystem.AutoMappingProfile
         {
             CreateMap<Supplier, SupplierDTO>().ReverseMap();
 
+            CreateMap<St_Stkjournal, Stk_JournalDTO>().ReverseMap();
         }
     }
 }
