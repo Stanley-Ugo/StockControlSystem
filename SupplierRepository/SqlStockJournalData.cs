@@ -26,7 +26,7 @@ namespace StockControlSystem.SupplierRepository
 
         public void DeleteStockJournal(St_Stkjournal stkJournal)
         {
-            throw new NotImplementedException();
+            _stockControlDBContext.St_Stkjournals.Remove(stkJournal);
         }
 
         public St_Stkjournal EditStockJournal(St_Stkjournal stkJournal)
