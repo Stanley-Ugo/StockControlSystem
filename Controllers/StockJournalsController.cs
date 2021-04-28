@@ -77,12 +77,12 @@ namespace StockControlSystem.Controllers
             if (companyInDb != null)
             {
                 stkJournal.Stk_Coy = companyInDb.Stk_Coy;
-                stkJournal.Stk_Coy = companyInDb.Stk_Branch;
-                stkJournal.Stk_Coy = companyInDb.Stk_Year;
-                stkJournal.Stk_Coy = companyInDb.Stk_Month;
-                stkJournal.Stk_Coy = companyInDb.Stk_Loc;
-                stkJournal.Stk_Coy = companyInDb.Stk_Type;
-                stkJournal.Stk_Coy = companyInDb.Stk_Account;
+                stkJournal.Stk_Branch = companyInDb.Stk_Branch;
+                stkJournal.Stk_Year = companyInDb.Stk_Year;
+                stkJournal.Stk_Month = companyInDb.Stk_Month;
+                stkJournal.Stk_Loc = companyInDb.Stk_Loc;
+                stkJournal.Stk_Type = companyInDb.Stk_Type;
+                stkJournal.Stk_Account = companyInDb.Stk_Account;
 
                 _stockJournalRepository.EditStockJournal(stkJournal);
 
