@@ -27,11 +27,22 @@ namespace StockControlSystem.SupplierRepository
         public void DeleteStockJournal(St_Stkjournal stkJournal)
         {
             _stockControlDBContext.St_Stkjournals.Remove(stkJournal);
+
+            _stockControlDBContext.SaveChanges();
         }
 
         public St_Stkjournal EditStockJournal(St_Stkjournal stkJournal)
         {
-            throw new NotImplementedException();
+            var stockJournalInDb = _stockControlDBContext.St_Stkjournals.SingleOrDefault(x => x.Stk_Coy == stkJournal.Stk_Coy);
+
+            if (stockJournalInDb != null)
+            {
+                _stockControlDBContext.St_Stkjournals.Update(stkJournal);
+
+                _stockControlDBContext.SaveChanges();
+            }
+
+            return stkJournal;
         }
 
         public St_Stkjournal GetStockJournal(string company)
