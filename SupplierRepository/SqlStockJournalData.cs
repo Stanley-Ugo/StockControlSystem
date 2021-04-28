@@ -37,7 +37,13 @@ namespace StockControlSystem.SupplierRepository
 
             if (stockJournalInDb != null)
             {
-                _stockControlDBContext.St_Stkjournals.Update(stkJournal);
+                stockJournalInDb.Stk_Debit = stkJournal.Stk_Debit;
+                stockJournalInDb.Stk_Credit = stkJournal.Stk_Credit;
+                stockJournalInDb.Stk_Rem = stkJournal.Stk_Rem;
+                stockJournalInDb.Stk_Update = stkJournal.Stk_Update;
+                stockJournalInDb.Stk_Period = stkJournal.Stk_Period;
+
+                _stockControlDBContext.St_Stkjournals.Update(stockJournalInDb);
 
                 _stockControlDBContext.SaveChanges();
             }
